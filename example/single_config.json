@@ -1,0 +1,14 @@
+{
+  "name": "test api one",
+  "method": "GET",
+  "protocol": "https",
+  "host": "github.com",
+  "path": "users",
+  "query": {
+    "foo": 1,
+    "bar": "a"
+  },
+  "headers": {
+    "Content-Type": "application/json"
+  }
+}
