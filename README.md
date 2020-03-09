@@ -24,4 +24,6 @@ simple api tester
 
 - support yaml format config 支持 yaml 格式配置文件
 
+- support config data for public use 支持共享配置信息
+
 ## CHANGE LOGS
