@@ -10,6 +10,7 @@ use std::fs::File;
 use std::io::Read;
 
 fn main() { 
+    // todo read data from command line argument
     let mut file = File::open("/Users/wendelu/Workspace/rust/try_api/examples/single_config.json").unwrap();
     let mut data = String::new();
     file.read_to_string(&mut data).unwrap();
