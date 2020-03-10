@@ -16,6 +16,10 @@ fn main() {
 
     println!("data={:?}", data);
 
+    let json: serde_json::Value = serde_json::from_str(&data).unwrap();
+
+    println!("json={:#?}", json);
+
     println!("======play=============");
 
     serde_example();
