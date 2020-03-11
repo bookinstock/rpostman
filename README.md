@@ -1,6 +1,9 @@
 # try_api
 
-simple api tester
+a mini postman
+
+a simple api tester
+
 
 ## TODO
 

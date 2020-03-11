@@ -21,9 +21,45 @@ fn main() {
 
     println!("json={:#?}", json);
 
-    println!("======play=============");
+    let data = call_api().unwrap();
 
-    serde_example();
+    // println!("data = {:?}", data);
+
+    let serialized_data = serde_json::to_string(&data).unwrap();
+
+    println!("serialized_data={:?}", serialized_data);
+
+
+    // println!("======play=============");
+
+    // serde_example();
+}
+
+
+
+
+
+fn call_api() -> Result<serde_json::Value, Box<dyn std::error::Error>> {
+    // println!("===start");
+    let resp = reqwest::blocking::get("http://localhost:3000/users")?;
+        // .json::<HashMap<String, String>>()?;
+    // println!("{:#?}", resp);
+    let json: serde_json::Value = resp.json()?;
+    // println!("serde_json={:?}", json); 
+    // println!("===stop");
+    Ok(json)
+}
+
+#[tokio::main]
+async fn x2() -> Result<(), Box<dyn std::error::Error>> {
+    let resp = reqwest::get("http://localhost:3000/users")
+        .await?;
+
+        //.json::<HashMap<String, String>>()
+        //.await?;
+    // let mut my_number: () = resp;
+    println!("{:#?}", resp);
+    Ok(())
 }
 
 fn serde_example() {
