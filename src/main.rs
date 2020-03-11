@@ -8,10 +8,28 @@ struct Point {
 
 use std::fs::File;
 use std::io::Read;
+use std::io;
 
 fn main() { 
+
+    println!("Please input the config path.");
+
+    let mut config_path = String::new();
+
+    io::stdin().read_line(&mut config_path)
+        .expect("Failed to read line");
+
+    let config_path = config_path.trim();
+
+    //test default path
+    let config_path = "/Users/wendelu/Workspace/rust/try_api/examples/single_config.json";
+
+    println!("config_path={:?}", config_path);
+
     // todo read data from command line argument
-    let mut file = File::open("/Users/wendelu/Workspace/rust/try_api/examples/single_config.json").unwrap();
+    // let mut file = File::open("/Users/wendelu/Workspace/rust/try_api/examples/single_config.json").unwrap();
+
+    let mut file = File::open(config_path).unwrap();
     let mut data = String::new();
     file.read_to_string(&mut data).unwrap();
 
