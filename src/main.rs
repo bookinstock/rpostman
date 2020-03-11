@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Point {
@@ -7,16 +7,16 @@ struct Point {
 }
 
 use std::fs::File;
-use std::io::Read;
 use std::io;
+use std::io::Read;
 
-fn main() { 
-
+fn main() {
     println!("Please input the config path.");
 
     let mut config_path = String::new();
 
-    io::stdin().read_line(&mut config_path)
+    io::stdin()
+        .read_line(&mut config_path)
         .expect("Failed to read line");
 
     let config_path = config_path.trim();
@@ -47,34 +47,28 @@ fn main() {
 
     println!("serialized_data={:?}", serialized_data);
 
-
     // println!("======play=============");
 
     // serde_example();
 }
 
-
-
-
-
 fn call_api() -> Result<serde_json::Value, Box<dyn std::error::Error>> {
     // println!("===start");
     let resp = reqwest::blocking::get("http://localhost:3000/users")?;
-        // .json::<HashMap<String, String>>()?;
+    // .json::<HashMap<String, String>>()?;
     // println!("{:#?}", resp);
     let json: serde_json::Value = resp.json()?;
-    // println!("serde_json={:?}", json); 
+    // println!("serde_json={:?}", json);
     // println!("===stop");
     Ok(json)
 }
 
 #[tokio::main]
 async fn x2() -> Result<(), Box<dyn std::error::Error>> {
-    let resp = reqwest::get("http://localhost:3000/users")
-        .await?;
+    let resp = reqwest::get("http://localhost:3000/users").await?;
 
-        //.json::<HashMap<String, String>>()
-        //.await?;
+    //.json::<HashMap<String, String>>()
+    //.await?;
     // let mut my_number: () = resp;
     println!("{:#?}", resp);
     Ok(())
@@ -103,19 +97,19 @@ fn serde_example() {
         b: i32,
     }
     let w = W { a: 0, b: 0 }; // Represented as `{"a":0,"b":0}`
-    
+
     #[derive(Debug)]
     struct X(i32, i32);
     let x = X(0, 0); // Represented as `[0,0]`
-    
+
     #[derive(Debug)]
     struct Y(i32);
     let y = Y(0); // Represented as just the inner value `0`
-    
+
     #[derive(Debug)]
     struct Z;
     let z = Z; // Represented as `null`
-    
+
     #[derive(Serialize, Deserialize, Debug)]
     enum E {
         W { a: i32, b: i32 },
@@ -124,11 +118,11 @@ fn serde_example() {
         Z,
     }
     let w = E::W { a: 0, b: 0 }; // Represented as `{"W":{"a":0,"b":0}}`
-    let x = E::X(0, 0);          // Represented as `{"X":[0,0]}`
-    let y = E::Y(0);             // Represented as `{"Y":0}`
-    let z = E::Z;                // Represented as `"Z"`
+    let x = E::X(0, 0); // Represented as `{"X":[0,0]}`
+    let y = E::Y(0); // Represented as `{"Y":0}`
+    let z = E::Z; // Represented as `"Z"`
 
-    let xxx = vec![w,x,y,z];
+    let xxx = vec![w, x, y, z];
 
     println!("xxx={:?}", xxx);
 
@@ -136,9 +130,6 @@ fn serde_example() {
 
     println!("serialized_xxx={:?}", serialized);
 }
-
-
-
 
 // extern crate serde_json;
 
