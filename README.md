@@ -7,14 +7,6 @@ a simple api tester
 
 ## TODO
 
-- think about config 想一想配置文件的结构
-
-- load config (json format) 加载json配置文件
-
-- send http request 发送请求
-
-- get response 得到响应
-
 - show result 展示结果
 
 - friendly cli 更友好的命令行交互
@@ -30,3 +22,13 @@ a simple api tester
 - support config data for public use 支持共享配置信息
 
 ## CHANGE LOGS
+
+### 2020-03-11
+
+- think about config 想一想配置文件的结构
+
+- load config (json format) 加载json配置文件
+
+- send http request 发送请求
+
+- get response 得到响应
