@@ -35,11 +35,20 @@ fn main() {
 
     println!("data={:?}", data);
 
+
+
     let json: serde_json::Value = serde_json::from_str(&data).unwrap();
 
-    println!("json={:#?}", json);
+    let test = match json {
+        serde_json::Value::Object(config) => "a",
+        _ => "b"
+    };
 
-    let data = call_api().unwrap();
+    println!("-------{:#?}", test);
+
+    // println!("json={:#?}", json);
+
+    let data = call_api("xx").unwrap();
 
     // println!("data = {:?}", data);
 
@@ -52,7 +61,7 @@ fn main() {
     // serde_example();
 }
 
-fn call_api() -> Result<serde_json::Value, Box<dyn std::error::Error>> {
+fn call_api(api_path: &str) -> Result<serde_json::Value, Box<dyn std::error::Error>> {
     // println!("===start");
     let resp = reqwest::blocking::get("http://localhost:3000/users")?;
     // .json::<HashMap<String, String>>()?;
