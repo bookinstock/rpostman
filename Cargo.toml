@@ -1,5 +1,5 @@
 [package]
-name = "try_api"
+name = "rpostman"
 version = "0.1.0"
 authors = ["Wende Lu <wendelu1991@gmail.com>"]
 edition = "2018"
