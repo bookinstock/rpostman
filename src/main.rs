@@ -39,22 +39,35 @@ fn main() {
 
     let json: serde_json::Value = serde_json::from_str(&data).unwrap();
 
-    let test = match json {
-        serde_json::Value::Object(config) => "a",
-        _ => "b"
-    };
+    // let test = match json {
+    //     serde_json::Value::Object(config) => "a",
+    //     _ => "b"
+    // };
 
-    println!("-------{:#?}", test);
+    if let serde_json::Value::Object(config) = json {
+        println!("a-{:?}", config);
 
-    // println!("json={:#?}", json);
+        let serde_json::Value::String(host) = config["host"];
+        let path = &config["path"];
 
-    let data = call_api("xx").unwrap();
 
-    // println!("data = {:?}", data);
+        // println!("host={:?}", _host);
+        // # notes
+        // if let serde_json::Value::String(host) = config["host"] {
+        //     println!("host={:?}", host);    
+        // }
+        
+        // println!("path={:?}", config["path"]);
 
-    let serialized_data = serde_json::to_string(&data).unwrap();
+        let data = call_api("xx").unwrap();
 
-    println!("serialized_data={:?}", serialized_data);
+        let serialized_data = serde_json::to_string(&data).unwrap();
+
+        println!("serialized_data={:?}", serialized_data);
+    } else {
+        println!("b");
+    }
+
 
     // println!("======play=============");
 
